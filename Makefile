@@ -1,11 +1,17 @@
-SRC = main.c 
+SRC = src/main.c \
+	src/get_next_line.c \
+	src/get_next_line_utils.c \
 
 CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 
 NAME = fdf
 
-OBJ = $(SRC: .c=.o)
+OBJ = $(SRC:.c=.o)
+
+INCLUDE = include/fdf.h
+
+Libft = Libft/libft.a
 
 MLX = mlx/libmlx_Linux.a -lXext -lX11 
 
@@ -14,8 +20,9 @@ all: $(NAME)
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) $(MLX) -o $(NAME)
+$(NAME): $(OBJ) $(INCLUDE)
+	make -C Libft
+	$(CC) $(OBJ) $(MLX) $(Libft) $(INCLUDE) -o $(NAME)
 
 clean:
 	rm -f $(OBJ)
