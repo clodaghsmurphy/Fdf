@@ -1,6 +1,8 @@
 SRC = src/main.c \
 	src/get_next_line.c \
 	src/get_next_line_utils.c \
+	src/parse.c \
+	src/list.c \
 
 CFLAGS = -Wall -Wextra -Werror
 CC = gcc

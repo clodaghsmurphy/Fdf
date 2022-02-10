@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:11:30 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/09 17:19:48 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/10 13:29:46 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 
 typedef struct s_map
 {
-	int	width;
-	int	length;
+	int		width;
+	int		height;
+	char	***char_tab;
+	int		**int_tab;
 
 }	t_map;
 
@@ -48,9 +50,25 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
+typedef struct s_tab
+{
+	char			**tab;
+	struct s_tab	*next;
+}	t_tab;
+
 void	fdf_init(t_fdf *fdf);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+/*---------------Parse------------------*/
+int		tab_height(char **tab, t_fdf *fdf);
+void	convert_int_tab(t_tab **list, t_fdf *fdf);
+void	parse_map(int fd, t_fdf *fdf);
+int		*ft_atoi_string(char **char_tab, t_fdf *fdf);
+int		tab_width(char **tab, t_fdf *fdf);
+void	printtab(int	**tab, t_fdf *fdf);
 
+t_tab	*ft_my_lstnew(char **tab);
+void	ft_my_lstadd_back(t_tab **alst, t_tab *new);
+int		ft_my_lstsize(t_tab *lst);
 /*----------------GNL--------------------*/
 char	*get_next_line(int fd);
 char	*ft_strdup_gnl(const char *s1);
