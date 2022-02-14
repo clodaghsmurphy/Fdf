@@ -6,11 +6,11 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 15:22:16 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/09 16:22:45 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/14 09:02:53 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../include/fdf.h"
+#include"fdf.h"
 
 char	*ft_strdup_gnl(const char	*s1)
 {

@@ -6,11 +6,11 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 12:03:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/10 13:17:17 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/14 09:03:14 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 void	ft_my_lstadd_back(t_tab **alst, t_tab *new)
 {

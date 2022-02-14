@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:11:30 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/10 13:29:46 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:04:45 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include<limits.h>
 # include<stdlib.h>
 # include<stdio.h>
+# include<math.h>
 # include "../Libft/libft.h"
+# include "fdf.h"
 
 # define BUFFER_SIZE 2147483648
 
@@ -31,15 +33,24 @@ typedef struct s_map
 
 }	t_map;
 
-typedef struct s_fdf
+typedef struct s_co
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img;
-	void	*img_addr;
-	t_map	*map;
+	int	x1;
+	int	x2;
+	int	y1;
+	int	y2;
 
-}	t_fdf;
+}	t_co;
+
+typedef struct s_line
+{
+	int	dx;
+	int	dy;
+	int	p;
+	int	end;
+	int	x;
+	int	y;
+}	t_line;
 
 typedef struct s_data
 {
@@ -50,6 +61,15 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
+typedef struct s_fdf
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_map	map;
+	t_data	img_str;
+
+}	t_fdf;
+
 typedef struct s_tab
 {
 	char			**tab;
@@ -57,9 +77,13 @@ typedef struct s_tab
 }	t_tab;
 
 void	fdf_init(t_fdf *fdf);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
+int		ft_close(int keycode, t_fdf *fdf);
+/*----------------draw------------------*/
+void	ft_bresenham(t_co *cords, t_fdf *fdf);
+void	draw(t_fdf *fdf);
+void	set_data(t_line *data, t_co *cords);
 /*---------------Parse------------------*/
-int		tab_height(char **tab, t_fdf *fdf);
 void	convert_int_tab(t_tab **list, t_fdf *fdf);
 void	parse_map(int fd, t_fdf *fdf);
 int		*ft_atoi_string(char **char_tab, t_fdf *fdf);

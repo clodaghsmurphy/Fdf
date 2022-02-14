@@ -6,11 +6,11 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:34:03 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/09 16:22:34 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/14 09:02:45 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../include/fdf.h"
+#include"fdf.h"
 
 static char	*next_line(char	*save)
 {

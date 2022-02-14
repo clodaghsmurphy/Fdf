@@ -62,7 +62,7 @@ HDR = libft.h
 
 
 $(NAME): $(OBJ) $(HDR) 
-	ar -crs  $(NAME) $(OBJ) 
+	@ar -crs  $(NAME) $(OBJ) 
 
 bonus: $(OBJ) $(BONUS_OBJ)
 		ar -crs $(NAME) $(OBJ) $(BONUS_OBJ)
@@ -70,11 +70,13 @@ bonus: $(OBJ) $(BONUS_OBJ)
 all : $(NAME)
 
 clean:
-	rm -f *.o
+	@rm -f *.o
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
+
+.SILENT:all
 
 .PHONY: clean re flcean
