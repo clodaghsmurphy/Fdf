@@ -23,14 +23,22 @@ Libft = Libft/libft.a
 
 MLX = mlx/libmlx_Linux.a -lXext -lX11 
 
+nb:=1
+
 all: $(NAME)
 
 .c.o:
-	$(CC)  $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
+	@echo -n "\033[32m"
+	@$(CC)  $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
+	@echo -n "\rFDF Objects compiled : " ${nb} 
+	$(eval nb=$(shell echo $$(($(nb)+1))))
+
 
 $(NAME): $(OBJ)
+	@echo -n "\n"
 	@make -C Libft
 	@$(CC) $(OBJ) $(MLX) $(Libft) -o $(NAME) $(INCLUDE)
+	@echo "\nFdF pret!"
 
 clean:
 	@rm -f $(OBJ)
@@ -44,6 +52,10 @@ fclean: clean
 
 -include $(DEP)
 
-.SILENT:all
+.SILENT: $(NAME)
+
+.PHONY: all re fclean clean
+
+.SECONDARY: $(OBJ)
 
 re: fclean all

@@ -51,18 +51,24 @@ BONUS = ./ft_lstadd_back.c \
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror 
 
+nb:=1
+
 OBJ = $(FILES:.c=.o)
 
 BONUS_OBJ = $(BONUS:.c=.o)
 
 .c.o: 
-	${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
+	@${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
+	@echo -n "\rLibft objects compiled : " ${nb}
+	$(eval nb=$(shell echo $$(($(nb)+1))))
 
 HDR = libft.h
 
 
 $(NAME): $(OBJ) $(HDR) 
-	@ar -crs  $(NAME) $(OBJ) 
+	@ar -crs  $(NAME) $(OBJ)
+	@echo -n "\nLibft compilation complete!"
+	@echo -n "\n"
 
 bonus: $(OBJ) $(BONUS_OBJ)
 		ar -crs $(NAME) $(OBJ) $(BONUS_OBJ)
