@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:08:10 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/14 14:17:31 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/16 11:32:07 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (-1);
-	printf("in main\n");
 	fdf_init(&fdf);
 	parse_map(fd, &fdf);
 	img.img = mlx_new_image(fdf.mlx_ptr, 1920, 1080);

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:58:40 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/14 14:04:52 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:51:36 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,18 @@ void	convert_int_tab(t_tab **list, t_fdf *fdf)
 	i = 0;
 	tab_width((*list)->tab, fdf);
 	fdf->map.height = ft_my_lstsize(*list);
-	printf("height in parse is %d\n", fdf->map.height);
 	int_tab = malloc(sizeof(int *) * fdf->map.height);
 	if (!int_tab)
 		return ;
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
 		int_tab[i] = ft_atoi_string(temp->tab, fdf);
 		temp = temp->next;
 		i++;
+		printf("i in tab is : %d and height is %d\n", i, fdf->map.height);
 	}
 	fdf->map.int_tab = int_tab;
+	printtab(int_tab, fdf);
 }
 
 void	printtab(int	**tab, t_fdf *fdf)
@@ -63,7 +64,7 @@ void	printtab(int	**tab, t_fdf *fdf)
 
 	i = 0;
 	j = 0;
-	while (i < fdf->map.height - 1)
+	while (i <= fdf->map.height - 1)
 	{
 		j = 0;
 		while (j < fdf->map.width)

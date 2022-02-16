@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:11:30 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/14 14:04:45 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:41:58 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ typedef struct s_line
 	int	end;
 	int	x;
 	int	y;
+	int	ym;
+	int	xm;
+	int	err;
+
 }	t_line;
 
 typedef struct s_data
@@ -83,6 +87,9 @@ int		ft_close(int keycode, t_fdf *fdf);
 void	ft_bresenham(t_co *cords, t_fdf *fdf);
 void	draw(t_fdf *fdf);
 void	set_data(t_line *data, t_co *cords);
+void	ft_bresenham_low(int x1, int y1, int x2, int y2, t_fdf *fdf);
+void	ft_bresenham_high(int x1, int y1, int x2, int y2, t_fdf *fdf);
+
 /*---------------Parse------------------*/
 void	convert_int_tab(t_tab **list, t_fdf *fdf);
 void	parse_map(int fd, t_fdf *fdf);
