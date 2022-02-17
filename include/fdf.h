@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:11:30 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/16 15:41:58 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:33:59 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "fdf.h"
 
 # define BUFFER_SIZE 2147483648
+# define SIN(x) sin(x * 3.141592653589 / 180)
+# define COS(x) cos(x * 3.141592653589 / 180)
 
 typedef struct s_map
 {
@@ -37,8 +39,10 @@ typedef struct s_co
 {
 	int	x1;
 	int	x2;
+	int	z1;
 	int	y1;
 	int	y2;
+	int	z2;
 
 }	t_co;
 
@@ -89,7 +93,10 @@ void	draw(t_fdf *fdf);
 void	set_data(t_line *data, t_co *cords);
 void	ft_bresenham_low(int x1, int y1, int x2, int y2, t_fdf *fdf);
 void	ft_bresenham_high(int x1, int y1, int x2, int y2, t_fdf *fdf);
-
+/*---------------matrix------------------*/
+void	translate_point(t_fdf *fdf, t_co *cords, int tx, int ty);
+void	rotate(t_co *cords, int x_pivot, int y_pivot, int angle);
+void	rotate2(t_co *cords, int x_pivot, int y_pivot, int angle);
 /*---------------Parse------------------*/
 void	convert_int_tab(t_tab **list, t_fdf *fdf);
 void	parse_map(int fd, t_fdf *fdf);

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:44:01 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/16 18:38:07 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:54:28 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,42 +19,73 @@ void	draw(t_fdf *fdf)
 	t_co	cords;
 
 	i = 0;
-	while (i < fdf->map.height + 1)
+	while (i < fdf->map.height)
 	{
 		j = 0;
 		while (j < fdf->map.width)
 		{
-			cords.x1 = /*fdf->map.int_tab[i][j]*/ + (25 * (j + 1));
-			cords.y1 = /*fdf->map.int_tab[i][j]*/ + (25 * (i + 1));
-			cords.x2 = /*fdf->map.int_tab[i][j]*/ + (25 * (j + 2));
-			cords.y2 = /*fdf->map.int_tab[i][j]*/ + (25 * (i + 1));
-			printf("--------------HORIZONTAL CORDS--------------\n");
-			printf("-----WIDTH = %d ----------\n", fdf->map.width);
-			printf("-----HEIGHT = %d ----------\n", fdf->map.height);
-			printf("J is : %d I is : %d\n", j, i);
-		//	printf("X1 : %d\n Y2 : %d\n VALUE : %d\n\n ", cords.x1, cords.y1, fdf->map.int_tab[i][j]);
-		//	if (j < fdf->map.width - 2)
-		//		printf("X2: %d\n Y2: %d\n VALUE : %d\n\n ",  cords.x2, cords.y2, fdf->map.int_tab[i][j + 1]);
+			cords.x1 = (25 * (j + 1));
+			cords.y1 = (25 * (i + 1));
+			cords.z1 = fdf->map.int_tab[i][j];
+			cords.x2 = (25 * (j + 2));
+			cords.y2 = (25 * (i + 1));
+			cords.z2 = fdf->map.int_tab[i][j];
+			translate_point(fdf, &cords, 200, 200);
+			rotate(&cords, 400, 400, 45);
+			rotate2(&cords, 400, 400, 45);
 			ft_bresenham(&cords, fdf);
 			j++;
 		}
 		i++;
 	}
+	j = 0;
+	while (j < fdf->map.width)
+	{
+	cords.x1 = (25 * (j + 1));
+			cords.y1 = (25 * (i + 1));
+			cords.x2 = (25 * (j + 2));
+			cords.y2 = (25 * (i + 1));
+			translate_point(fdf, &cords, 200, 200);
+			rotate(&cords, 400, 400, 45);
+			rotate2(&cords, 400, 400, 45);
+
+			ft_bresenham(&cords, fdf);
+		j++;
+	}
+		
 	i = 0;
-	while (i < fdf->map.width + 1)
+	while (i < fdf->map.width)
 	{
 		j = 0;
 		while (j < fdf->map.height)
 		{
-			cords.x1 = /*fdf->map.int_tab[i - 1][j - 1]*/ + (25 * (i + 1));
-			cords.y1 = /*fdf->map.int_tab[i - 1][j - 1]*/ + (25 * (j + 1));
-			cords.x2 = /*fdf->map.int_tab[i - 1][j - 1]*/ + (25 * (i + 1));
-			cords.y2 = /*fdf->map.int_tab[i - 1][j - 1]*/ + (25 * (j + 2));
+			cords.x1 = (25 * (i + 1));
+			cords.y1 = (25 * (j + 1));
+			cords.z1 = fdf->map.int_tab[j][i];
+			cords.x2 = (25 * (i + 1));
+			cords.y2 = (25 * (j + 2));
+			cords.z2 = fdf->map.int_tab[j][i];
+			translate_point(fdf, &cords, 200, 200);
+			rotate(&cords, 400, 400, 45);
+			rotate2(&cords, 400, 400, 45);
 			ft_bresenham(&cords, fdf);
 			j++;
 		}
 		i++;
 	}
+	j= 0;
+	while (j < fdf->map.height)
+		{
+			cords.x1 = (25 * (i + 1));
+			cords.y1 = (25 * (j + 1));
+			cords.x2 = (25 * (i + 1));
+			cords.y2 = (25 * (j + 2));
+			translate_point(fdf, &cords, 200, 200);
+			rotate(&cords, 400, 400, 45);
+			rotate2(&cords, 400, 400, 45);
+			ft_bresenham(&cords, fdf);
+			j++;
+		}
 }
 
 void	ft_bresenham(t_co *cords, t_fdf *fdf)
