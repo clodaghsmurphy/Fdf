@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:08:10 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/16 11:32:07 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/18 11:43:37 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int ac, char **av)
 			&img.bits_per_pixel,
 			&img.line_length, &img.endian);
 	fdf.img_str = img;
+	mlx_string_put(fdf.mlx_ptr, fdf.win_ptr, 1000, 700, 0x00FF0000, "cord");
+
 	draw(&fdf);
 	mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr,
 		fdf.img_str.img, 10, 10);

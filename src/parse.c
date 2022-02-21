@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:58:40 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/16 17:51:36 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/21 17:51:28 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	convert_int_tab(t_tab **list, t_fdf *fdf)
 		int_tab[i] = ft_atoi_string(temp->tab, fdf);
 		temp = temp->next;
 		i++;
-		printf("i in tab is : %d and height is %d\n", i, fdf->map.height);
 	}
 	fdf->map.int_tab = int_tab;
 	printtab(int_tab, fdf);
