@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:58:40 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/21 17:51:28 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/22 15:15:48 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	convert_int_tab(t_tab **list, t_fdf *fdf)
 		i++;
 	}
 	fdf->map.int_tab = int_tab;
-	printtab(int_tab, fdf);
 }
 
 void	printtab(int	**tab, t_fdf *fdf)
