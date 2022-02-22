@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:11:30 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/21 18:07:58 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/22 09:55:37 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	set_data(t_line *data, t_co *cords);
 void	ft_bresenham_low(int x1, int y1, int x2, int y2, t_fdf *fdf);
 void	ft_bresenham_high(int x1, int y1, int x2, int y2, t_fdf *fdf);
 void	set_points(t_co *cords, t_fdf *fdf, int i, int j);
+void	set_points2(t_co *cords, t_fdf *fdf, int i, int j);
 /*---------------matrix------------------*/
 void	translate_point(t_fdf *fdf, t_co *cords, int tx, int ty);
 void	rotate(t_co *cords, int x_pivot, int y_pivot, int angle);
