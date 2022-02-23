@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:11:30 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/22 16:08:53 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/23 18:07:45 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define BUFFER_SIZE 2147483648
 # define WIN_HEIGHT 1080
 # define WIN_WIDTH 1920
+# define MLX_SYNC_IMAGE_WRITABLE	1
+# define MLX_SYNC_WIN_FLUSH_CMD		2
+# define MLX_SYNC_WIN_CMD_COMPLETED	3
 
 typedef struct s_map
 {
@@ -73,6 +76,9 @@ typedef struct s_fdf
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		zoom;
+	int		colour;
+	int		alt;
 	t_map	map;
 	t_data	img_str;
 
@@ -84,6 +90,8 @@ typedef struct s_tab
 	struct s_tab	*next;
 }	t_tab;
 
+int		mouse_hook(int keycode, t_fdf *fdf);
+int		ft_zoom(int keycode, t_fdf *fdf);
 void	fdf_init(t_fdf *fdf);
 void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
 int		ft_close(int keycode, t_fdf *fdf);
@@ -96,7 +104,7 @@ void	draw_x(t_fdf *fdf, t_co *cords);
 void	draw_y(t_fdf *fdf, t_co *cords);
 /*---------------matrix------------------*/
 void	translate_point(t_fdf *fdf, t_co *cords, int tx, int ty);
-void	project(t_co *cords);
+void	project(t_co *cords, t_fdf *fdf);
 void	set_data(t_co *cords, t_line *data);
 void	ft_bresenham_bis(t_co *cords, t_fdf *fdf, t_line *data);
 /*---------------Parse------------------*/
@@ -105,6 +113,7 @@ void	parse_map(int fd, t_fdf *fdf);
 int		*ft_atoi_string(char **char_tab, t_fdf *fdf);
 int		tab_width(char **tab, t_fdf *fdf);
 void	printtab(int	**tab, t_fdf *fdf);
+void	scale(t_fdf *fdf);
 
 t_tab	*ft_my_lstnew(char **tab);
 void	ft_my_lstadd_back(t_tab **alst, t_tab *new);

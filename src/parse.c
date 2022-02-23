@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:58:40 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/22 15:15:48 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:29:37 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,22 @@ void	parse_map(int fd, t_fdf *fdf)
 	if (str)
 		free(str);
 	convert_int_tab(&list, fdf);
+	scale(fdf);
+	printf("zoom is %d\n", fdf->zoom);
+	printf("height is %d\n", fdf->map.height);
+	printf("width is %d\n", fdf->map.width);
+	sleep(1);
+}
+
+void	scale(t_fdf *fdf)
+{
+	int	zoom;
+
+	zoom = floor((int)hypot((double)fdf->map.height - 1,
+				(double)fdf->map.width - 1));
+	zoom = WIN_HEIGHT / zoom;
+	printf("zoom in scale is %d\n", zoom);
+	fdf->zoom = zoom;
 }
 
 void	convert_int_tab(t_tab **list, t_fdf *fdf)
