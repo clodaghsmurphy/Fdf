@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 12:03:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/14 09:03:14 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/24 14:56:09 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,18 @@ int	ft_my_lstsize(t_tab *lst)
 		i++;
 	}
 	return (i);
+}
+
+void	ft_my_lstclear(t_tab **lst)
+{
+	t_tab	*temp;
+
+	temp = *lst;
+	while (temp != NULL)
+	{
+		temp = temp ->next;
+		free_char_tab((*lst)->tab);
+		free(*lst);
+		*lst = temp;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:59:09 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/23 17:43:19 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/24 16:41:10 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	project(t_co *cords, t_fdf *fdf)
 }
 
 void	ft_bresenham(t_co *cords, t_fdf *fdf)
-{ 
+{
 	t_line	data;
 
 	set_data(cords, &data);

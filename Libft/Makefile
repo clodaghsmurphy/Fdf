@@ -49,7 +49,7 @@ BONUS = ./ft_lstadd_back.c \
 		./ft_lstsize.c \
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
 nb:=1
 

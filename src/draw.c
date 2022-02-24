@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:44:01 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/23 17:25:16 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/24 17:18:52 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	set_points_x(t_co *cords, t_fdf *fdf, int i, int j)
 	cords->x2 = ((fdf->zoom * (j + 2)) + (fdf->zoom * (i + 1)) / 3);
 	cords->y2 = ((fdf->zoom * (i + 1)) - (fdf->zoom * (j + 2)) / 4);
 	cords->z2 = fdf->map.int_tab[i][j + 1];
-	translate_point(fdf, cords, 200, 300);
+	translate_point(fdf, cords, TRANS_X, TRANS_Y);
 	project(cords, fdf);
 	ft_bresenham(cords, fdf);
 }
@@ -33,7 +33,7 @@ void	set_points_y(t_co *cords, t_fdf *fdf, int i, int j)
 	cords->x2 = ((fdf->zoom * (j + 1)) + (fdf->zoom * (i + 2)) / 3);
 	cords->y2 = ((fdf->zoom * (i + 2)) - (fdf->zoom * (j + 1)) / 4);
 	cords->z2 = fdf->map.int_tab[i + 1][j];
-	translate_point(fdf, cords, 200, 300);
+	translate_point(fdf, cords, TRANS_X, TRANS_Y);
 	project(cords, fdf);
 	ft_bresenham(cords, fdf);
 }
@@ -42,6 +42,11 @@ void	draw(t_fdf *fdf)
 {
 	t_co	cords;
 
+	if (fdf->map.height == 1)
+	{
+		print_one(fdf);
+		return ;
+	}
 	draw_x(fdf, &cords);
 	draw_y(fdf, &cords);
 }

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:11:30 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/23 18:07:45 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/24 17:54:37 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 # include "../Libft/libft.h"
 # include "fdf.h"
 
-# define BUFFER_SIZE 2147483648
+# define BUFFER_SIZE 42
 # define WIN_HEIGHT 1080
 # define WIN_WIDTH 1920
 # define MLX_SYNC_IMAGE_WRITABLE	1
 # define MLX_SYNC_WIN_FLUSH_CMD		2
 # define MLX_SYNC_WIN_CMD_COMPLETED	3
+# define TRANS_X 200
+# define TRANS_Y 300
 
 typedef struct s_map
 {
@@ -90,6 +92,9 @@ typedef struct s_tab
 	struct s_tab	*next;
 }	t_tab;
 
+void	print_one(t_fdf *fdf);
+void	free_char_tab(char **tab);
+void	free_tab(int **int_tab, t_fdf *fdf);
 int		mouse_hook(int keycode, t_fdf *fdf);
 int		ft_zoom(int keycode, t_fdf *fdf);
 void	fdf_init(t_fdf *fdf);
@@ -108,16 +113,19 @@ void	project(t_co *cords, t_fdf *fdf);
 void	set_data(t_co *cords, t_line *data);
 void	ft_bresenham_bis(t_co *cords, t_fdf *fdf, t_line *data);
 /*---------------Parse------------------*/
+void	error(t_fdf *fdf);
+void	check_shape(t_tab **list, t_fdf *fdf);
 void	convert_int_tab(t_tab **list, t_fdf *fdf);
 void	parse_map(int fd, t_fdf *fdf);
 int		*ft_atoi_string(char **char_tab, t_fdf *fdf);
-int		tab_width(char **tab, t_fdf *fdf);
+int		tab_width(char **tab);
 void	printtab(int	**tab, t_fdf *fdf);
 void	scale(t_fdf *fdf);
-
+/*---------------list------------------*/
 t_tab	*ft_my_lstnew(char **tab);
 void	ft_my_lstadd_back(t_tab **alst, t_tab *new);
 int		ft_my_lstsize(t_tab *lst);
+void	ft_my_lstclear(t_tab **lst);
 /*----------------GNL--------------------*/
 char	*get_next_line(int fd);
 char	*ft_strdup_gnl(const char *s1);

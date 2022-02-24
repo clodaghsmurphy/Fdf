@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:58:40 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/23 15:29:37 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/24 17:50:58 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,62 @@ void	parse_map(int fd, t_fdf *fdf)
 	if (str)
 		free(str);
 	convert_int_tab(&list, fdf);
+	printtab(fdf->map.int_tab, fdf);
 	scale(fdf);
-	printf("zoom is %d\n", fdf->zoom);
-	printf("height is %d\n", fdf->map.height);
-	printf("width is %d\n", fdf->map.width);
-	sleep(1);
+}
+
+void	print_one(t_fdf *fdf)
+{
+	my_mlx_pixel_put(fdf, 800, 500, fdf->colour);
+}
+
+void	check_shape(t_tab **list, t_fdf *fdf)
+{
+	int		flag;
+	int		width;
+	t_tab	*temp;
+
+	flag = 0;
+	printf("Test\n");
+	if (*list == NULL)
+	{
+		printf("no list\n");
+		error(fdf);
+	}
+	temp = *list;
+	while (temp != NULL)
+	{
+		printf("flag is %d\n", flag);
+		if (flag == 0)
+		{
+			width = tab_width((*list)->tab);
+			flag = 1;
+		}
+		if (width != tab_width((*list)->tab))
+			error(fdf);
+		temp = temp->next;
+	}
+}
+
+void	error(t_fdf *fdf)
+{
+	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
+	mlx_destroy_display(fdf->mlx_ptr);
+	free(fdf->mlx_ptr);
+	printf("Test 2\n");
+	exit(0);
 }
 
 void	scale(t_fdf *fdf)
 {
 	int	zoom;
 
-	zoom = floor((int)hypot((double)fdf->map.height - 1,
+	if (fdf->map.height == 1)
+		return ;
+	zoom = (int)floor(hypot((double)fdf->map.height - 1,
 				(double)fdf->map.width - 1));
+	zoom = (int)zoom;
 	zoom = WIN_HEIGHT / zoom;
-	printf("zoom in scale is %d\n", zoom);
 	fdf->zoom = zoom;
 }
 
@@ -57,7 +98,7 @@ void	convert_int_tab(t_tab **list, t_fdf *fdf)
 
 	temp = *list;
 	i = 0;
-	tab_width((*list)->tab, fdf);
+	fdf->map.width = tab_width((*list)->tab);
 	fdf->map.height = ft_my_lstsize(*list);
 	int_tab = malloc(sizeof(int *) * fdf->map.height);
 	if (!int_tab)
@@ -68,6 +109,8 @@ void	convert_int_tab(t_tab **list, t_fdf *fdf)
 		temp = temp->next;
 		i++;
 	}
+	check_shape(list, fdf);
+	ft_my_lstclear(list);
 	fdf->map.int_tab = int_tab;
 }
 
@@ -107,14 +150,12 @@ int	*ft_atoi_string(char **char_tab, t_fdf *fdf)
 	return (tab);
 }
 
-int	tab_width(char **tab, t_fdf *fdf)
+int	tab_width(char **tab)
 {
 	int	i;
 
 	i = 0;
 	while (tab[i])
 		i++;
-	fdf->map.width = i;
-	(void) fdf;
 	return (i);
 }
