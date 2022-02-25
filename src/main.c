@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:08:10 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/24 17:51:06 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/25 17:33:26 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void free_tab(int **int_tab, t_fdf *fdf)
 		free(int_tab[i]);
 		i++;
 	}
+	free(int_tab);
 }
 
 void	free_char_tab(char **tab)

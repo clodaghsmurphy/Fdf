@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:58:40 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/24 17:50:58 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/25 17:39:55 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	parse_map(int fd, t_fdf *fdf)
 	if (str)
 		free(str);
 	convert_int_tab(&list, fdf);
-	printtab(fdf->map.int_tab, fdf);
 	scale(fdf);
 }
 
