@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:11:30 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/03/01 15:25:22 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:13:00 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ typedef struct s_tab
 	struct s_tab	*next;
 }	t_tab;
 
+void	check_list(t_tab **list, t_fdf *fdf);
+int		is_num(char *str);
+int		ft_isspace(char c);
 /*---------------keycode------------------*/
 int		ft_zoom(int keycode, t_fdf *fdf);
 int		check_key(int keycode, t_fdf *fdf);
@@ -116,8 +119,8 @@ void	draw_grid(t_fdf *fdf, t_co *cords);
 /*---------------project------------------*/
 void	translate_point(t_fdf *fdf, t_co *cords);
 void	translate_point2(t_fdf *fdf, t_co *cords);
-void	project(t_co *cords);
-void	project2(t_co *cords);
+void	project(t_co *cords, t_fdf *fdf);
+void	project2(t_co *cords, t_fdf *fdf );
 void	set_data(t_co *cords, t_line *data);
 void	ft_bresenham_bis(t_co *cords, t_fdf *fdf, t_line *data);
 /*---------------Parse------------------*/

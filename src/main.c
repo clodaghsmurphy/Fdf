@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:08:10 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/03/01 15:24:41 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/03/01 15:53:25 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,8 @@ int	main(int ac, char **av)
 		fdf.img_str.img, 10, 10);
 	mlx_hook(fdf.win_ptr, 17, 0, ft_close, &fdf);
 	mlx_hook(fdf.win_ptr, 2, 1L << 0, check_key, &fdf);
-	mlx_mouse_hook(fdf.win_ptr, ft_zoom, &fdf);
 	mlx_loop(fdf.mlx_ptr);
 }
-
-/*
-
-int	ft_alt(int keycode, t_fdf *fdf)
-{	
-	fdf->alt = fdf->alt * 2;
-	printf("keycode is %d\n", keycode);
-	return (0);
-}
-*/
 
 void	fdf_init(t_fdf *fdf)
 {

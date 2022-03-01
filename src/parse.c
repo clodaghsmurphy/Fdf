@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:58:40 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/27 20:24:12 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:15:30 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,18 @@ void	parse_map(int fd, t_fdf *fdf)
 {
 	char	*str;
 	t_tab	*list;
-	int		i;
 
 	list = NULL;
-	i = 0;
 	str = get_next_line(fd);
 	while (str != NULL)
 	{
 		ft_my_lstadd_back(&list, ft_my_lstnew(ft_split(str, ' ')));
-		i++;
 		free(str);
 		str = get_next_line(fd);
 	}
 	if (str)
 		free(str);
+	check_list(&list, fdf);
 	convert_int_tab(&list, fdf);
 	scale(fdf);
 }

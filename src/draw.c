@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:44:01 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/03/01 14:37:28 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/03/01 15:57:06 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	set_points_x(t_co *cords, t_fdf *fdf, int i, int j)
 	cords->x2 = ((mapx + 1) - mapy) * tile_half ;
 	cords->y2 = (((mapx + 1) + mapy) * tile_half) / 2;
 	cords->z2 = fdf->map.int_tab[i][j + 1];
-	project(cords);
+	project(cords, fdf);
 	translate_point(fdf, cords);
 	ft_bresenham(cords, fdf);
 	cords->x2 = (mapx - (mapy + 1)) * tile_half;
 	cords->y2 = ((mapx + (mapy + 1)) * tile_half) / 2;
 	cords->z2 = fdf->map.int_tab[i + 1][j];
-	project2(cords);
+	project2(cords, fdf);
 	translate_point2(fdf, cords);
 	ft_bresenham(cords, fdf);
 }
@@ -75,7 +75,7 @@ void	last_line_y(t_fdf *fdf, t_co *cords, int i, int j)
 		cords->y2 = ((mapx + (mapy + 1)) * tile_half) / 2;
 		cords->z2 = fdf->map.int_tab[i + 1][j];
 		translate_point(fdf, cords);
-		project(cords);
+		project(cords, fdf);
 		ft_bresenham(cords, fdf);
 		mapy++;
 		i++;
@@ -101,7 +101,7 @@ void	last_line_x(t_fdf *fdf, t_co *cords, int i, int j)
 		cords->y2 = ((mapx + 1) + mapy) * tile_half / 2;
 		cords->z2 = fdf->map.int_tab[i][j + 1];
 		translate_point(fdf, cords);
-		project(cords);
+		project(cords, fdf);
 		ft_bresenham(cords, fdf);
 		mapx++;
 		j++;
