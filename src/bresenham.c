@@ -1,47 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix.c                                           :+:      :+:    :+:   */
+/*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 11:59:09 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/25 18:15:03 by clmurphy         ###   ########.fr       */
+/*   Created: 2022/03/01 14:09:35 by clmurphy          #+#    #+#             */
+/*   Updated: 2022/03/01 14:10:02 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	translate_point(t_fdf *fdf, t_co *cords, int tx, int ty)
-{
-	(void)fdf;
-	cords->x1 = cords->x1 + tx;
-	cords->y1 = cords->y1 + ty;
-	cords->x2 = cords->x2 + tx;
-	cords->y2 = cords->y2 + ty;
-}
-
-void	project(t_co *cords, t_fdf *fdf)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	if (fdf->map.height > fdf->map.width)
-	{
-		x = WIN_HEIGHT / fdf->map.height;
-		y = WIN_WIDTH / fdf->map.width;
-	}
-	else
-	{
-		y = WIN_HEIGHT / fdf->map.height ;
-		x = WIN_WIDTH / fdf->map.width ;
-	}
-	printf("zoom is %d\n", x / y);
-	cords->y1 = cords->y1 - cords->z1 * (y / x);
-	cords->y2 = cords->y2 - cords->z2 * (y / x);
-}
 
 void	ft_bresenham(t_co *cords, t_fdf *fdf)
 {

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:58:40 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/25 17:39:55 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/02/27 20:24:12 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ void	parse_map(int fd, t_fdf *fdf)
 	scale(fdf);
 }
 
-void	print_one(t_fdf *fdf)
-{
-	my_mlx_pixel_put(fdf, 800, 500, fdf->colour);
-}
-
 void	check_shape(t_tab **list, t_fdf *fdf)
 {
 	int		flag;
@@ -46,16 +41,13 @@ void	check_shape(t_tab **list, t_fdf *fdf)
 	t_tab	*temp;
 
 	flag = 0;
-	printf("Test\n");
 	if (*list == NULL)
 	{
-		printf("no list\n");
 		error(fdf);
 	}
 	temp = *list;
 	while (temp != NULL)
 	{
-		printf("flag is %d\n", flag);
 		if (flag == 0)
 		{
 			width = tab_width((*list)->tab);
@@ -65,28 +57,6 @@ void	check_shape(t_tab **list, t_fdf *fdf)
 			error(fdf);
 		temp = temp->next;
 	}
-}
-
-void	error(t_fdf *fdf)
-{
-	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
-	mlx_destroy_display(fdf->mlx_ptr);
-	free(fdf->mlx_ptr);
-	printf("Test 2\n");
-	exit(0);
-}
-
-void	scale(t_fdf *fdf)
-{
-	int	zoom;
-
-	if (fdf->map.height == 1)
-		return ;
-	zoom = (int)floor(hypot((double)fdf->map.height - 1,
-				(double)fdf->map.width - 1));
-	zoom = (int)zoom;
-	zoom = WIN_HEIGHT / zoom;
-	fdf->zoom = zoom;
 }
 
 void	convert_int_tab(t_tab **list, t_fdf *fdf)
@@ -111,25 +81,6 @@ void	convert_int_tab(t_tab **list, t_fdf *fdf)
 	check_shape(list, fdf);
 	ft_my_lstclear(list);
 	fdf->map.int_tab = int_tab;
-}
-
-void	printtab(int	**tab, t_fdf *fdf)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i <= fdf->map.height - 1)
-	{
-		j = 0;
-		while (j < fdf->map.width)
-		{
-			printf("tab[%d][%d] is %d\n", i, j, tab[i][j]);
-			j++;
-		}
-		i++;
-	}
 }
 
 int	*ft_atoi_string(char **char_tab, t_fdf *fdf)

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:11:30 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/02/24 17:54:37 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/03/01 15:25:22 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # define MLX_SYNC_IMAGE_WRITABLE	1
 # define MLX_SYNC_WIN_FLUSH_CMD		2
 # define MLX_SYNC_WIN_CMD_COMPLETED	3
-# define TRANS_X 200
-# define TRANS_Y 300
 
 typedef struct s_map
 {
@@ -81,6 +79,8 @@ typedef struct s_fdf
 	int		zoom;
 	int		colour;
 	int		alt;
+	int		trans_x;
+	int		trans_y;
 	t_map	map;
 	t_data	img_str;
 
@@ -92,6 +92,11 @@ typedef struct s_tab
 	struct s_tab	*next;
 }	t_tab;
 
+/*---------------keycode------------------*/
+int		ft_zoom(int keycode, t_fdf *fdf);
+int		check_key(int keycode, t_fdf *fdf);
+void	refresh_image(t_fdf *fdf);
+void	printcords(t_co *cords);
 void	print_one(t_fdf *fdf);
 void	free_char_tab(char **tab);
 void	free_tab(int **int_tab, t_fdf *fdf);
@@ -99,17 +104,20 @@ int		mouse_hook(int keycode, t_fdf *fdf);
 int		ft_zoom(int keycode, t_fdf *fdf);
 void	fdf_init(t_fdf *fdf);
 void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
-int		ft_close(int keycode, t_fdf *fdf);
+int		ft_close(t_fdf *fdf);
 /*----------------draw------------------*/
+void	last_line_y(t_fdf *fdf, t_co *cords, int i, int j);
+void	last_line_x(t_fdf *fdf, t_co *cords, int i, int j);
 void	ft_bresenham(t_co *cords, t_fdf *fdf);
 void	draw(t_fdf *fdf);
 void	set_points_x(t_co *cords, t_fdf *fdf, int i, int j);
 void	set_points_y(t_co *cords, t_fdf *fdf, int i, int j);
-void	draw_x(t_fdf *fdf, t_co *cords);
-void	draw_y(t_fdf *fdf, t_co *cords);
-/*---------------matrix------------------*/
-void	translate_point(t_fdf *fdf, t_co *cords, int tx, int ty);
-void	project(t_co *cords, t_fdf *fdf);
+void	draw_grid(t_fdf *fdf, t_co *cords);
+/*---------------project------------------*/
+void	translate_point(t_fdf *fdf, t_co *cords);
+void	translate_point2(t_fdf *fdf, t_co *cords);
+void	project(t_co *cords);
+void	project2(t_co *cords);
 void	set_data(t_co *cords, t_line *data);
 void	ft_bresenham_bis(t_co *cords, t_fdf *fdf, t_line *data);
 /*---------------Parse------------------*/

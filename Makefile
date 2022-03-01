@@ -4,7 +4,10 @@ SRC = src/main.c \
 	src/parse.c \
 	src/list.c \
 	src/draw.c \
-	src/matrix.c \
+	src/project.c \
+	src/utils.c \
+	src/bresenham.c \
+	src/keycode.c \
 
 LIBFT_PATH = ./Libft/
 
@@ -31,7 +34,7 @@ nb:=1
 all: $(NAME)
 
 .c.o:
-	@echo -n "\033[32m"
+	@echo -n "\33[32m"
 	@$(CC)  $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
 	@echo -n "\rFDF Objects compiled : " ${nb} 
 	$(eval nb=$(shell echo $$(($(nb)+1))))
